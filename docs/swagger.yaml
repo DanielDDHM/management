@@ -1,0 +1,106 @@
+definitions:
+  handlers.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+  handlers.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+info:
+  contact: {}
+paths:
+  /transactions/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: get transactions by user
+      parameters:
+      - description: 
+        in: path
+        name: userId
+        required: true
+        type: integer
+      - description: int valid
+        in: query
+        name: page
+        type: integer
+      - description: int valid
+        in: query
+        name: size
+        type: integer
+      - description: string valid
+        in: query
+        name: sortOrder
+        type: string
+      - description: string valid
+        in: query
+        name: sortOrderName
+        type: string
+      - description: string valid
+        in: query
+        name: startDate
+        type: string
+      - description: string valid
+        in: query
+        name: endDate
+        type: string
+      - description: api secret
+        in: header
+        name: x-api-secret
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get Transactions by user
+      tags:
+      - transactions
+  /wallets/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: Wallets By 
+      parameters:
+      - description: 
+        in: path
+        name: userId
+        required: true
+        type: integer
+      - description: api secret
+        in: header
+        name: x-api-secret
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: Get Wallets
+      tags:
+      - wallets
+swagger: "2.0"
